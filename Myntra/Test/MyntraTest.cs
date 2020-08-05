@@ -39,6 +39,14 @@ namespace Myntra.Test
         }
 
         [Test, Order(5)]
+        public void AddressTest()
+        {
+            Address addr = new Address(driver);
+            addr.SelectAddress();
+            Assert.AreEqual(addressTitle, driver.Title);
+        }
+
+        [Test, Order(6)]
         public void LogoutTest()
         {
             Login login = new Login(driver);

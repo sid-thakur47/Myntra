@@ -1,14 +1,25 @@
-﻿using OpenQA.Selenium;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Utility.cs" company="BridgeLabz">
+// Copyright (c) 2020 All Rights Reserved
+// </copyright>
+//-----------------------------------------------------------------------
+
+using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Myntra.Utils
 {
+    /// <summary>
+    /// To store all required functionality 
+    /// </summary>
     public class Utility
     {
+        /// <summary>
+        /// To take screenshot after every test
+        /// </summary>
+        /// <param name="driver">to control browser</param>
+        /// <param name="testStatus">failed or passed test</param>
+        /// <returns></returns>
         public static string TakeScreenshot(IWebDriver driver, string testStatus)
         {
             ITakesScreenshot ts = (ITakesScreenshot)driver;

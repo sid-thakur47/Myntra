@@ -1,14 +1,27 @@
-﻿using AventStack.ExtentReports;
+﻿//-----------------------------------------------------------------------
+// <copyright file="ReportManager.cs" company="BridgeLabz">
+// Copyright (c) 2020 All Rights Reserved
+// </copyright>
+//-----------------------------------------------------------------------
+
+using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
 using System.Net;
 
 namespace Myntra.ExtentReport
 {
+    /// <summary>
+    /// Report Manager
+    /// </summary>
     public class ReportManager
     {
         private static ExtentReports extent;
         private static ExtentHtmlReporter htmlReporter;
 
+        /// <summary>
+        /// To get instance of extent report
+        /// </summary>
+        /// <returns> extent class object</returns>
         public static ExtentReports GetInstance()
         {
             if (extent == null)

@@ -1,12 +1,24 @@
-﻿using Myntra.MyntraBase;
+﻿//-----------------------------------------------------------------------
+// <copyright file="Myntra.cs" company="BridgeLabz">
+// Copyright (c) 2020 All Rights Reserved
+// </copyright>
+//-----------------------------------------------------------------------
+
+using Myntra.MyntraBase;
 using Myntra.Pages;
 using NUnit.Framework;
 
 namespace Myntra.Test
 {
+    /// <summary>
+    /// Test cases
+    /// </summary>
     [TestFixture]
     public class MyntraTest : Base
     {
+        /// <summary>
+        /// Login to myntra account
+        /// </summary>
         [Test,Order(1)]
         public void LoginTest()
         {
@@ -15,15 +27,21 @@ namespace Myntra.Test
             Assert.AreEqual(loginTitle, driver.Title);
         }
 
+        /// <summary>
+        /// Navigate to men's section
+        /// </summary>
         [Test, Order(2)]
         public void MensPageTest()
         {
             MenSection order = new MenSection(driver);
-            order.SelectProduct();
+            order.MensSection();
             Assert.AreEqual(mensTitle, driver.Title);
         }
 
-        [Test, Order(3)]
+        /// <summary>
+        /// Select shirt
+        /// </summary>
+       [Test, Order(3)]
         public void SelectShirtTest()
         {
             Shirt shirt = new Shirt(driver);
@@ -31,22 +49,31 @@ namespace Myntra.Test
             Assert.AreEqual(shirtTitle, driver.Title);
         }
 
-        [Test,Order(4)]
-        public void ShoppingBagTest()
-        {
-            ShoppingBag shop = new ShoppingBag(driver);
-            shop.AddToBag();
-            Assert.AreEqual(shopping, driver.Url);
-        }
+        /// <summary>
+        /// add shirt to shopping bag
+        /// </summary>
+       [Test,Order(4)]
+       public void ShoppingBagTest()
+       {
+           ShoppingBag shop = new ShoppingBag(driver);
+           shop.AddToBag();
+           Assert.AreEqual(shopping, driver.Url);
+       }
 
-        [Test, Order(5)]
-        public void AddressTest()
-        {
-            Address addr = new Address(driver);
-            addr.SelectAddress();
-            Assert.AreEqual(addressTitle, driver.Title);
-        }
-
+        /// <summary>
+        /// Select address
+        /// </summary>
+       [Test, Order(5)]
+       public void AddressTest()
+       {
+           Address addr = new Address(driver);
+           addr.SelectAddress();
+           Assert.AreEqual(addressTitle, driver.Title);
+       }
+       
+        /// <summary>
+        /// Logout from application
+        /// </summary>
         [Test, Order(6)]
         public void LogoutTest()
         {
@@ -55,6 +82,9 @@ namespace Myntra.Test
             Assert.IsTrue(log.Validation().Displayed);
         }
 
+        /// <summary>
+        /// Close the browser
+        /// </summary>
         [OneTimeTearDown]
         public void QuitBrowser()
         {

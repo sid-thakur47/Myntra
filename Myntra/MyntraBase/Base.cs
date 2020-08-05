@@ -1,4 +1,10 @@
-﻿using AventStack.ExtentReports;
+﻿//-----------------------------------------------------------------------
+// <copyright file="MyntraBase.cs" company="BridgeLabz">
+// Copyright (c) 2020 All Rights Reserved
+// </copyright>
+//-----------------------------------------------------------------------
+
+using AventStack.ExtentReports;
 using AventStack.ExtentReports.MarkupUtils;
 using Myntra.Utils;
 using NUnit.Framework;
@@ -10,6 +16,9 @@ using System.Configuration;
 
 namespace Myntra.MyntraBase
 {
+    /// <summary>
+    /// Initialization of test classes
+    /// </summary>
     [TestFixture]
     public class Base
     {
@@ -19,10 +28,12 @@ namespace Myntra.MyntraBase
         public string shirtTitle = ConfigurationManager.AppSettings["shirt"];
         public string addressTitle = ConfigurationManager.AppSettings["address"];
         public string shopping = ConfigurationManager.AppSettings["shopping"];
-
         public static ExtentReports extent = ExtentReport.ReportManager.GetInstance();
         public static ExtentTest test;
 
+        /// <summary>
+        /// Initializes chrome driver once
+        /// </summary>
         [OneTimeSetUp]
         public void Initilize()
         {
@@ -32,6 +43,9 @@ namespace Myntra.MyntraBase
             driver.Url = "https://www.myntra.com/login/password";
         }
 
+        /// <summary>
+        /// Takes screenshot and generate report of each test
+        /// </summary>
         [TearDown]
         public void Close()
         {

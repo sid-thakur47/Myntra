@@ -25,15 +25,6 @@ namespace Myntra.Pages
         [FindsBy(How = How.XPath, Using = "//button[contains(@class,'lg block submitButton')]")]
         public IWebElement loginbutton; 
 
-        [FindsBy(How = How.XPath, Using = "//span[contains(text(),'Profile')]")]
-        public IWebElement profile; 
-
-        [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Logout')]")]
-        public IWebElement logout; 
-
-        [FindsBy(How = How.XPath, Using = "//div[@class='desktop-getUserInLinks desktop-getInLinks']")]
-        public IWebElement logoutvalidation;
-
         public void MyntraLogin()
         {
             username.SendKeys(reader.email);
@@ -42,21 +33,6 @@ namespace Myntra.Pages
             Thread.Sleep(5000);
             loginbutton.Click();
             Thread.Sleep(5000);
-        }
-
-        public void Logout()
-        {
-            profile.Click();
-            Thread.Sleep(1000);
-            logout.Click();
-            Thread.Sleep(1000);
-            profile.Click();
-            Thread.Sleep(5000);
-        }
-
-        public IWebElement Validation()
-        {
-            return logoutvalidation;
         }
     }
 }

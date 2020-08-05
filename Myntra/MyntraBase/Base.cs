@@ -10,8 +10,10 @@ namespace Myntra.MyntraBase
     {
         public IWebDriver driver;
         public string loginTitle = ConfigurationManager.AppSettings["login"];
-        public string menSectionTitle = ConfigurationManager.AppSettings["menSection"];
-        public string shirtSectionTitle = ConfigurationManager.AppSettings["shirt"];
+        public string mensTitle = ConfigurationManager.AppSettings["menSection"];
+        public string shirtTitle = ConfigurationManager.AppSettings["shirt"];
+        public string addressTitle = ConfigurationManager.AppSettings["address"];
+        public string shopping = ConfigurationManager.AppSettings["shopping"];
 
         [OneTimeSetUp]
         public void Initilize()

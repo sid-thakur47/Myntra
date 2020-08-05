@@ -38,14 +38,14 @@ namespace Myntra.MyntraBase
             test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
             if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
             {
-                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name);
+                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name + TestStatus.Failed);
                 test.Log(Status.Fail, "Test Failed");
                 test.AddScreenCaptureFromPath(path);
                 test.Fail(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Red));
             }
             else if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed)
             {
-                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name);
+                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name + TestStatus.Passed);
                 test.Log(Status.Pass, "Test Sucessful");
                 test.AddScreenCaptureFromPath(path);
                 test.Pass(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Green));

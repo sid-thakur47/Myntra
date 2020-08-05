@@ -14,6 +14,7 @@ namespace Myntra.Test
             login.MyntraLogin();
             Assert.AreEqual(loginTitle, driver.Title);
         }
+
         [Test, Order(2)]
         public void MensPageTest()
         {
@@ -33,9 +34,9 @@ namespace Myntra.Test
         [Test,Order(4)]
         public void ShoppingBagTest()
         {
-            ShoppingBag shopping = new ShoppingBag(driver);
-            shopping.AddToBag();
-            Assert.AreEqual(base.shopping, driver.Url);
+            ShoppingBag shop = new ShoppingBag(driver);
+            shop.AddToBag();
+            Assert.AreEqual(shopping, driver.Url);
         }
 
         [Test, Order(5)]
@@ -49,9 +50,9 @@ namespace Myntra.Test
         [Test, Order(6)]
         public void LogoutTest()
         {
-            Login login = new Login(driver);
-            login.Logout();
-            Assert.IsTrue(login.Validation().Displayed);
+            Logout log = new Logout(driver);
+            log.LogoutMyntra();
+            Assert.IsTrue(log.Validation().Displayed);
         }
 
         [OneTimeTearDown]

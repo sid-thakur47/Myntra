@@ -15,6 +15,13 @@ namespace Myntra.Test
             login.MyntraLogin();
             Assert.AreEqual(loginTitle, driver.Title);
         }
+        [Test, Order(2)]
+        public void MensPageTest()
+        {
+            MenSection order = new MenSection(driver);
+            order.SelectProduct();
+            Assert.AreEqual(menSectionTitle, driver.Title);
+        }
 
         [Test, Order(4)]
         public void LogoutTest()

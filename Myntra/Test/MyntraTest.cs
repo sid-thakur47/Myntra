@@ -23,6 +23,14 @@ namespace Myntra.Test
             Assert.AreEqual(menSectionTitle, driver.Title);
         }
 
+        [Test, Order(3)]
+        public void SelectShirtTest()
+        {
+            Shirt shirt = new Shirt(driver);
+            shirt.SelectShirt();
+            Assert.AreEqual(shirtSectionTitle, driver.Title);
+        }
+
         [Test, Order(4)]
         public void LogoutTest()
         {

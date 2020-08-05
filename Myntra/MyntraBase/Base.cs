@@ -1,4 +1,8 @@
-﻿using NUnit.Framework;
+﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.MarkupUtils;
+using Myntra.Utils;
+using NUnit.Framework;
+using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
@@ -6,6 +10,7 @@ using System.Configuration;
 
 namespace Myntra.MyntraBase
 {
+    [TestFixture]
     public class Base
     {
         public IWebDriver driver;
@@ -15,6 +20,9 @@ namespace Myntra.MyntraBase
         public string addressTitle = ConfigurationManager.AppSettings["address"];
         public string shopping = ConfigurationManager.AppSettings["shopping"];
 
+        public static ExtentReports extent = ExtentReport.ReportManager.GetInstance();
+        public static ExtentTest test;
+
         [OneTimeSetUp]
         public void Initilize()
         {
@@ -22,6 +30,27 @@ namespace Myntra.MyntraBase
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
             driver.Url = "https://www.myntra.com/login/password";
+        }
+
+        [TearDown]
+        public void Close()
+        {
+            test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
+            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            {
+                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name);
+                test.Log(Status.Fail, "Test Failed");
+                test.AddScreenCaptureFromPath(path);
+                test.Fail(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Red));
+            }
+            else if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed)
+            {
+                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name);
+                test.Log(Status.Pass, "Test Sucessful");
+                test.AddScreenCaptureFromPath(path);
+                test.Pass(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Green));
+            }
+            extent.Flush();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Myntra.Pages
         [FindsBy(How = How.XPath, Using = "//div[contains(text(),'Logout')]")]
         public IWebElement logout; 
 
-        [FindsBy(How = How.XPath, Using = "//a[@class='desktop-linkButton']")]
+        [FindsBy(How = How.XPath, Using = "//div[@class='desktop-getUserInLinks desktop-getInLinks']")]
         public IWebElement logoutvalidation;
 
         public void MyntraLogin()

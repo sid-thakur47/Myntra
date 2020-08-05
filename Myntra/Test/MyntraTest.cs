@@ -1,7 +1,6 @@
 ﻿using Myntra.MyntraBase;
 using Myntra.Pages;
 using NUnit.Framework;
-using System.Linq.Expressions;
 
 namespace Myntra.Test
 {
@@ -20,7 +19,7 @@ namespace Myntra.Test
         {
             MenSection order = new MenSection(driver);
             order.SelectProduct();
-            Assert.AreEqual(menSectionTitle, driver.Title);
+            Assert.AreEqual(mensTitle, driver.Title);
         }
 
         [Test, Order(3)]
@@ -28,10 +27,18 @@ namespace Myntra.Test
         {
             Shirt shirt = new Shirt(driver);
             shirt.SelectShirt();
-            Assert.AreEqual(shirtSectionTitle, driver.Title);
+            Assert.AreEqual(shirtTitle, driver.Title);
         }
 
-        [Test, Order(4)]
+        [Test,Order(4)]
+        public void ShoppingBagTest()
+        {
+            ShoppingBag shopping = new ShoppingBag(driver);
+            shopping.AddToBag();
+            Assert.AreEqual(base.shopping, driver.Url);
+        }
+
+        [Test, Order(5)]
         public void LogoutTest()
         {
             Login login = new Login(driver);

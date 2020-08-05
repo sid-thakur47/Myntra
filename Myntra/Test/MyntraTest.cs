@@ -1,6 +1,7 @@
 ﻿using Myntra.MyntraBase;
 using Myntra.Pages;
 using NUnit.Framework;
+using System.Linq.Expressions;
 
 namespace Myntra.Test
 {
@@ -12,10 +13,10 @@ namespace Myntra.Test
         {
             Login login = new Login(driver);
             login.MyntraLogin();
-            Assert.AreEqual("Online Shopping for Women, Men, Kids Fashion & Lifestyle - Myntra", driver.Title);
+            Assert.AreEqual(loginTitle, driver.Title);
         }
 
-        [Test,Order(2)]
+        [Test, Order(4)]
         public void LogoutTest()
         {
             Login login = new Login(driver);

@@ -6,6 +6,7 @@
 
 using Myntra.MyntraBase;
 using Myntra.Pages;
+using Myntra.Utils;
 using NUnit.Framework;
 
 namespace Myntra.Test
@@ -89,6 +90,7 @@ namespace Myntra.Test
         public void QuitBrowser()
         {
             driver.Quit();
+            Utility.SendEmail();
         }
     }
 }

@@ -28,6 +28,7 @@ namespace Myntra.MyntraBase
         public string shirtTitle = ConfigurationManager.AppSettings["shirt"];
         public string addressTitle = ConfigurationManager.AppSettings["address"];
         public string shopping = ConfigurationManager.AppSettings["shopping"];
+        public string sale = ConfigurationManager.AppSettings["sale"];
         public static ExtentReports extent = ExtentReport.ReportManager.GetInstance();
         public static ExtentTest test;
 
@@ -37,7 +38,9 @@ namespace Myntra.MyntraBase
         [OneTimeSetUp]
         public void Initilize()
         {
-            driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("--disable-notifications");
+            driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             driver.Manage().Window.Maximize();
             driver.Url = "https://www.myntra.com/login/password";

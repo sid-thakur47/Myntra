@@ -8,6 +8,7 @@ using Myntra.MyntraBase;
 using Myntra.Pages;
 using Myntra.Utils;
 using NUnit.Framework;
+using System;
 
 namespace Myntra.Test
 {
@@ -43,18 +44,17 @@ namespace Myntra.Test
         /// Select shirt
         /// </summary>
        [Test, Order(3)]
-        public void SelectShirtTest()
+        public void SelectProductTest()
         {
-            Shirt shirt = new Shirt(driver);
-            shirt.SelectShirt();
-            Assert.AreEqual(shirtTitle, driver.Title);
+            Product product = new Product(driver);
+            product.SelectProduct(3);
         }
 
         /// <summary>
         /// add shirt to shopping bag
         /// </summary>
        [Test,Order(4)]
-       public void ShoppingBagTest()
+       public void AddingProductToShoppingBagTest()
        {
            ShoppingBag shop = new ShoppingBag(driver);
            shop.AddToBag();
@@ -64,11 +64,11 @@ namespace Myntra.Test
         /// <summary>
         /// Select address
         /// </summary>
-       [Test, Order(5)]
-       public void AddressTest()
+        [Test, Order(5)]
+       public void SelectingAddressTest()
        {
            Address addr = new Address(driver);
-           addr.SelectAddress();
+            addr.SelectAddress();
            Assert.AreEqual(addressTitle, driver.Title);
        }
        
@@ -90,7 +90,7 @@ namespace Myntra.Test
         public void QuitBrowser()
         {
             driver.Quit();
-            Utility.SendEmail();
+            //Utility.SendEmail();
         }
     }
 }

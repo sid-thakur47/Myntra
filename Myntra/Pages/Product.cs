@@ -6,6 +6,8 @@
 
 using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
@@ -14,15 +16,15 @@ namespace Myntra.Pages
     /// <summary>
     /// Store all elements of shirt page
     /// </summary>
-    public class Shirt
+    public class Product
     {
         private IWebDriver driver;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Shirt"/> class
+        /// Initializes a new instance of the <see cref="Product"/> class
         /// </summary>
         /// <param name="driver">to control browser</param>
-        public Shirt(IWebDriver driver)
+        public Product(IWebDriver driver)
         {
             this.driver = driver;
             PageFactory.InitElements(driver, this);
@@ -32,22 +34,24 @@ namespace Myntra.Pages
         /// Web elements
         /// </summary>
         [FindsBy(How = How.XPath, Using = "//label[contains(text(),'Shirts')]")]
-        public IWebElement filterShirt;
+        public IWebElement filter;
 
         [FindsBy(How = How.XPath, Using = "//li[1]//a[1]//div[1]//div[1]//div[1]//div[1]//picture[1]//img[1]")]
-        public IWebElement selectShirt;
+        public IWebElement selectProduct;
 
         [FindsBy(How = How.XPath, Using = "//p[contains(text(),'40')]")]
-        public IWebElement selectSize;
+        public IWebElement selectSize;     
+
 
         /// <summary>
         /// Apply filter and select shirt
         /// </summary>
-        public void SelectShirt()
+        public void SelectProduct(int postion)
         {
-            filterShirt.Click();
+            filter.Click();
             Thread.Sleep(1000);
-            selectShirt.Click();
+            IList<IWebElement> products = driver.FindElements(By.ClassName("product-base"));
+            products.ElementAt(postion).Click();
             Thread.Sleep(1000);
             driver.SwitchTo().Window(driver.WindowHandles.Last());
             selectSize.Click();

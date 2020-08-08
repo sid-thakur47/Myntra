@@ -1,11 +1,15 @@
 ﻿using Myntra.MyntraBase;
 using Myntra.Pages;
 using NUnit.Framework;
+using static Myntra.Utils.Utility;
 
 namespace Myntra.Test
 {
+    [TestFixture]
+    [Parallelizable]
     public class MyntraSaleTest : Base
     {
+
         /// <summary>
         /// Login to myntra account 
         /// </summary>

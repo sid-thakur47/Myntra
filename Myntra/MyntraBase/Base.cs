@@ -11,8 +11,11 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 using System;
 using System.Configuration;
+using System.Threading;
+using static Myntra.Utils.Utility;
 
 namespace Myntra.MyntraBase
 {
@@ -33,17 +36,22 @@ namespace Myntra.MyntraBase
         public static ExtentTest test;
 
         /// <summary>
-        /// Initializes chrome driver once
+        /// Initializes chrome driver
         /// </summary>
         [OneTimeSetUp]
         public void Initilize()
         {
+            ChooseBrowser();
+        }
+
+        private IWebDriver ChooseBrowser()
+        {
             ChromeOptions options = new ChromeOptions();
-            options.AddArgument("--disable-notifications");
+            options.AddArguments("--disable-notifications","--start-maximized");
             driver = new ChromeDriver(options);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Manage().Window.Maximize();
             driver.Url = "https://www.myntra.com/login/password";
+            return driver;
         }
 
         /// <summary>
@@ -52,21 +60,27 @@ namespace Myntra.MyntraBase
         [TearDown]
         public void Close()
         {
-            test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
-            if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+            try
             {
-                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name + TestStatus.Failed);
-                test.Log(Status.Fail, "Test Failed");
-                test.AddScreenCaptureFromPath(path);
-                test.Fail(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Red));
+                test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
+                if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
+                {
+                    string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name);
+                    test.Log(Status.Fail, "Test Failed");
+                    test.AddScreenCaptureFromPath(path);
+                    test.Fail(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Red));
+                }
+                else if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed)
+                {
+                    test.Log(Status.Pass, "Test Sucessful");
+                    test.Pass(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Green));
+                }
             }
-            else if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed)
+            catch (Exception e)
             {
-                string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name + TestStatus.Passed);
-                test.Log(Status.Pass, "Test Sucessful");
-                test.AddScreenCaptureFromPath(path);
-                test.Pass(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Green));
+                throw e;
             }
+            Thread.Sleep(5000);
             extent.Flush();
         }
     }

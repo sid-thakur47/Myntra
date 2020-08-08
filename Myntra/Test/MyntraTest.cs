@@ -9,6 +9,7 @@ using Myntra.Pages;
 using Myntra.Utils;
 using NUnit.Framework;
 using System;
+using static Myntra.Utils.Utility;
 
 namespace Myntra.Test
 {
@@ -16,8 +17,10 @@ namespace Myntra.Test
     /// Test cases
     /// </summary>
     [TestFixture]
+    [Parallelizable]
     public class MyntraTest : Base
     {
+
         /// <summary>
         /// Login to myntra account
         /// </summary>

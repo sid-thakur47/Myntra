@@ -4,6 +4,8 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using Myntra.CustomException;
+using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Configuration;
@@ -39,21 +41,28 @@ namespace Myntra.Utils
         /// </summary>
         public static void SendEmail()
         {
-            MailMessage mail = new MailMessage();
-            string fromEmail = ConfigurationManager.AppSettings["email"]; ;
-            string password = ConfigurationManager.AppSettings["password"]; ;
-            string ToEmail = "sidthakur258@gmail.com";
-            mail.From = new MailAddress(fromEmail);
-            mail.Subject = "Please check the attached report";
-            mail.To.Add(ToEmail);
-            mail.Priority = MailPriority.High;
-            mail.IsBodyHtml = true;
-            mail.Attachments.Add(new Attachment(@"C:\Users\Shivani\source\repos\Myntra\Myntra\ExtentReport\index.html"));
-            SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
-            smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential(fromEmail, password);
-            smtp.EnableSsl = true;
-            smtp.Send(mail);
-        }
+            try
+            {
+                MailMessage mail = new MailMessage();
+                string fromEmail = ConfigurationManager.AppSettings["email"]; ;
+                string password = ConfigurationManager.AppSettings["password"]; ;
+                string ToEmail = "sidthakur258@gmail.com";
+                mail.From = new MailAddress(fromEmail);
+                mail.Subject = "Please check the attached report";
+                mail.To.Add(ToEmail);
+                mail.Priority = MailPriority.High;
+                mail.IsBodyHtml = true;
+                mail.Attachments.Add(new Attachment(@"C:\Users\Shivani\source\repos\Myntra\Myntra\ExtentReport\index.html"));
+                SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
+                smtp.UseDefaultCredentials = false;
+                smtp.Credentials = new NetworkCredential(fromEmail, password);
+                smtp.EnableSsl = true;
+                smtp.Send(mail);
+            }
+            catch (Exception)
+            {
+                throw new Exceptions("Email error", Exceptions.ExceptionType.EMAIL_NOT_SEND);
+            }
+        }  
     }
 }

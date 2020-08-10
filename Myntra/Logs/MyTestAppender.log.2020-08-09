@@ -1,0 +1,6 @@
+﻿2020-08-09 22:10:48,764 INFO [ParallelWorker#3] Myntra.Test.MyntraSaleTest.LoginTestSale - Starting login test
+2020-08-09 22:11:16,447 INFO [ParallelWorker#3] Myntra.Test.MyntraSaleTest.BuyProductFromSaleTest - Starting BuyProductFromSale test
+2020-08-09 22:11:32,008 INFO [ParallelWorker#3] Myntra.Test.MyntraSaleTest.SelectProductFromSaleTest - Starting Select Product From Sale test
+2020-08-09 22:11:47,420 INFO [ParallelWorker#3] Myntra.Test.MyntraSaleTest.AddingSaleProductToShoppingBagTest - Starting Adding Product To ShoppingBag test
+2020-08-09 22:12:20,830 INFO [ParallelWorker#3] Myntra.Test.MyntraSaleTest.AddressTest - Starting selecting Address test
+2020-08-09 22:12:31,131 INFO [ParallelWorker#3] Myntra.Test.MyntraSaleTest.LogoutFromSaleTest - Starting logout test

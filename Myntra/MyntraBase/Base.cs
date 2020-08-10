@@ -6,14 +6,16 @@
 
 using AventStack.ExtentReports;
 using AventStack.ExtentReports.MarkupUtils;
+using log4net;
 using Myntra.Utils;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Edge;
 using System;
 using System.Configuration;
+using System.Security;
 using System.Threading;
 using static Myntra.Utils.Utility;
 
@@ -34,6 +36,7 @@ namespace Myntra.MyntraBase
         public string sale = ConfigurationManager.AppSettings["sale"];
         public static ExtentReports extent = ExtentReport.ReportManager.GetInstance();
         public static ExtentTest test;
+        public static readonly ILog log =LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         /// <summary>
         /// Initializes chrome driver
@@ -44,14 +47,18 @@ namespace Myntra.MyntraBase
             ChooseBrowser();
         }
 
-        private IWebDriver ChooseBrowser()
+        [SetUp]
+        public void StartingLog()
         {
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--disable-notifications","--start-maximized");
-            driver = new ChromeDriver(options);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            driver.Url = "https://www.myntra.com/login/password";
-            return driver;
+            log.Info(TestContext.CurrentContext.Test.Name + " Started");
+        }
+
+        private void ChooseBrowser()
+        {
+                ChromeOptions options = new ChromeOptions();
+                options.AddArguments("--disable-notifications", "--start-maximized");
+                driver = new ChromeDriver(options);
+                driver.Url = "https://www.myntra.com/login/password";
         }
 
         /// <summary>
@@ -65,6 +72,7 @@ namespace Myntra.MyntraBase
                 test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
                 {
+                    log.Error(TestContext.CurrentContext.Test.Name+ "  Failed");
                     string path = Utility.TakeScreenshot(driver, TestContext.CurrentContext.Test.Name);
                     test.Log(Status.Fail, "Test Failed");
                     test.AddScreenCaptureFromPath(path);
@@ -72,6 +80,7 @@ namespace Myntra.MyntraBase
                 }
                 else if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Passed)
                 {
+                    log.Info(TestContext.CurrentContext.Test.Name + " Finished");
                     test.Log(Status.Pass, "Test Sucessful");
                     test.Pass(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Green));
                 }
@@ -83,5 +92,6 @@ namespace Myntra.MyntraBase
             Thread.Sleep(5000);
             extent.Flush();
         }
+
     }
 }

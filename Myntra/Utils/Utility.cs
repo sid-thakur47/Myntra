@@ -11,6 +11,7 @@ using System;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
+using System.Net.NetworkInformation;
 
 namespace Myntra.Utils
 {
@@ -19,6 +20,12 @@ namespace Myntra.Utils
     /// </summary>
     public class Utility
     {
+        private string http;
+
+        public enum Browser
+        {
+            FIREFOX, CHROME
+        }
         /// <summary>
         /// To take screenshot after every test
         /// </summary>
@@ -63,6 +70,6 @@ namespace Myntra.Utils
             {
                 throw new Exceptions("Email error", Exceptions.ExceptionType.EMAIL_NOT_SEND);
             }
-        }  
+        }
     }
 }

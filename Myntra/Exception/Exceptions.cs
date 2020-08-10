@@ -22,7 +22,7 @@ namespace Myntra.CustomException
 
         public enum ExceptionType
         {
-            EMAIL_NOT_SEND
+            EMAIL_NOT_SEND,NO_INTERNET
         }
     }
 }

@@ -41,9 +41,7 @@ namespace Myntra.Pages
         public void BuyFromSale()
         {
             men.Click();
-            Thread.Sleep(5000);
-            viewAll.Click();
-            Thread.Sleep(1000);
+            viewAll.Click();   
         }
     }
 }

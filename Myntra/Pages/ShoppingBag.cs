@@ -54,7 +54,9 @@ namespace Myntra.Pages
         public void AddToBag()
         {
             addToBag.Click();
+            Thread.Sleep(1000);
             goToBag.Click();
+            Thread.Sleep(1000);
             placeOrder.Click();
         }
 
@@ -63,7 +65,7 @@ namespace Myntra.Pages
             addToBag.Click();
             Thread.Sleep(1000);
             goToBag.Click();
-            Thread.Sleep(10000);
+            Thread.Sleep(5000);
 
             string discount = dPrice.Text;
             string discountFilter = Regex.Replace(discount, "[^0-9]", "");

@@ -44,9 +44,8 @@ namespace Myntra.Pages
         {
             Actions actions = new Actions(driver);
             actions.MoveToElement(men).Build().Perform();
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
             topWear.Click();
-            Thread.Sleep(1000);
         }
     }
 }

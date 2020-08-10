@@ -39,7 +39,7 @@ namespace Myntra.Pages
         public void SelectAddress()
         {
             continueButton.Click();
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
         }
     }
 }

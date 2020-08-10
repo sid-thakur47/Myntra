@@ -46,7 +46,7 @@ namespace Myntra.Test
         /// <summary>
         /// Select shirt
         /// </summary>
-       [Test, Order(3)]
+        [Test, Order(3)]
         public void SelectProductTest()
         {
             Product product = new Product(driver);
@@ -56,25 +56,25 @@ namespace Myntra.Test
         /// <summary>
         /// add shirt to shopping bag
         /// </summary>
-       [Test,Order(4)]
-       public void AddingProductToShoppingBagTest()
-       {
-           ShoppingBag shop = new ShoppingBag(driver);
-           shop.AddToBag();
-           Assert.AreEqual(shopping, driver.Url);
-       }
+        [Test, Order(4)]
+        public void AddingProductToShoppingBagTest()
+        {
+            ShoppingBag shop = new ShoppingBag(driver);
+            shop.AddToBag();
+            Assert.AreEqual(shopping, driver.Url);
+        }
 
         /// <summary>
         /// Select address
         /// </summary>
         [Test, Order(5)]
-       public void SelectingAddressTest()
-       {
-           Address addr = new Address(driver);
+        public void SelectingAddressTest()
+        {
+            Address addr = new Address(driver);
             addr.SelectAddress();
-           Assert.AreEqual(addressTitle, driver.Title);
-       }
-       
+            Assert.AreEqual(addressTitle, driver.Title);
+        }
+
         /// <summary>
         /// Logout from application
         /// </summary>

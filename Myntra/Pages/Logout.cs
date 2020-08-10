@@ -48,12 +48,12 @@ namespace Myntra.Pages
         public void LogoutMyntra()
         {
             home.Click();
+            Thread.Sleep(2000);
             profile.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             logout.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(2000);
             profile.Click();
-            Thread.Sleep(5000);
         }
 
         /// <summary>

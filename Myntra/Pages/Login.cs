@@ -47,11 +47,9 @@ namespace Myntra.Pages
         public void MyntraLogin()
         {
             username.SendKeys(reader.email);
-            Thread.Sleep(5000);
             password.SendKeys(reader.password);
-            Thread.Sleep(5000);
             loginbutton.Click();
-            Thread.Sleep(5000);
+            Thread.Sleep(2000);
         }
     }
 }

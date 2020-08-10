@@ -49,13 +49,14 @@ namespace Myntra.Pages
         public void SelectProduct(int postion)
         {
             filter.Click();
-            Thread.Sleep(1000);
-            IList<IWebElement> products = driver.FindElements(By.ClassName("product-base"));
-            products.ElementAt(postion).Click();
-            Thread.Sleep(1000);
-            driver.SwitchTo().Window(driver.WindowHandles.Last());
-            selectSize.Click();
             Thread.Sleep(5000);
+            IList<IWebElement> products = driver.FindElements(By.ClassName("product-base"));
+            Thread.Sleep(5000);
+            products.ElementAt(postion).Click(); 
+            Thread.Sleep(5000);
+            driver.SwitchTo().Window(driver.WindowHandles.Last());
+            Thread.Sleep(5000);
+            selectSize.Click();
         }
     }
 }

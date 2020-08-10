@@ -14,8 +14,9 @@ namespace Myntra.Test
         /// Login to myntra account 
         /// </summary>
         [Test, Order(1)]
-        public void LoginTest()
+        public void LoginTestSale()
         {
+            log.Info("Starting login test");
             Login login = new Login(driver);
             login.MyntraLogin();
             Assert.AreEqual(loginTitle, driver.Title);
@@ -24,6 +25,7 @@ namespace Myntra.Test
         [Test, Order(2)]
         public void BuyProductFromSaleTest()
         {
+            log.Info("Starting BuyProductFromSale test");
             Sale sal = new Sale(driver);
             sal.BuyFromSale();
             Assert.AreEqual(sale, driver.Title);
@@ -35,8 +37,9 @@ namespace Myntra.Test
         [Test, Order(3)]
         public void SelectProductFromSaleTest()
         {
+            log.Info("Starting Select Product From Sale test");
             Product product = new Product(driver);
-            product.SelectProduct(1);
+            product.SelectProduct(3);
             //Assert.IsTrue(product.Validation().Displayed);
         }
 
@@ -46,6 +49,7 @@ namespace Myntra.Test
         [Test, Order(4)]
         public void AddingSaleProductToShoppingBagTest()
         {
+            log.Info("Starting Adding Product To ShoppingBag test");
             ShoppingBag shop = new ShoppingBag(driver);
             shop.AddToBagWhenOffer();
             Assert.AreEqual(shopping, driver.Url);
@@ -57,6 +61,7 @@ namespace Myntra.Test
         [Test, Order(5)]
         public void AddressTest()
         {
+            log.Info("Starting selecting Address test");
             Address addr = new Address(driver);
             addr.SelectAddress();
             Assert.AreEqual(addressTitle, driver.Title);
@@ -68,9 +73,10 @@ namespace Myntra.Test
         [Test, Order(6)]
         public void LogoutFromSaleTest()
         {
-            Logout log = new Logout(driver);
-            log.LogoutMyntra();
-            Assert.IsTrue(log.Validation().Displayed);
+            log.Info("Starting logout test");
+            Logout logout = new Logout(driver);
+            logout.LogoutMyntra();
+            Assert.IsTrue(logout.Validation().Displayed);
         }
 
         /// <summary>
@@ -80,6 +86,7 @@ namespace Myntra.Test
         public void QuitBrowser()
         {
             driver.Quit();
+            log.Info("Browser closed");
         }
     }
 }

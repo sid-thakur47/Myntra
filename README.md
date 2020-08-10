@@ -38,9 +38,12 @@ Myntra Website Automation
 * Selenium.WebDriver- .Net Binding for selenium webdriver API  
 * Selenium.WebDriver.ChromeDriver- Driver for Google Chrome  
 * DNSClient- In this project it is uesd to get Host name
+* Log4Net-Logging Test steps to log file
 
-## Test Scenerio covered
+## Test scenario covered
 
+  #First- Normal scenario of buying product
+  
 * Login to Myntra application  
 * Navigates to Home page  
 * Hover on Men's section  
@@ -51,6 +54,25 @@ Myntra Website Automation
 * Navigates to bag  
 * Changes quantity of shirt  
 * Clicks on Place order  
+* Selects default address  
+* Navigates to Payment page  
+* Navigates to Home page  
+* Log out from application  
+
+ #Second- Buying product during sale
+ 
+* Login to Myntra application  
+* Navigates to Home page  
+* Clicks on sale Image  
+* Clicks on Mens product sale
+* Navigates to products list in sale  
+* Applies Filter to only display shirts  
+* Selects the shirt  
+* Adds Shirt to bag  
+* Navigates to bag  
+* Changes quantity of shirt
+* Checks if offer is applied  
+* If Offer then clicks on Place order  
 * Selects default address  
 * Navigates to Payment page  
 * Navigates to Home page  

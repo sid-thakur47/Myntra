@@ -1,0 +1,12 @@
+﻿2020-08-10 17:24:27,493 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.StartingLog - LoginTest  Started
+2020-08-10 17:24:41,837 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.Close - LoginTest  Finished
+2020-08-10 17:25:06,606 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.StartingLog - MensPageTest  Started
+2020-08-10 17:25:15,622 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.Close - MensPageTest  Finished
+2020-08-10 17:25:21,071 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.StartingLog - SelectProductTest  Started
+2020-08-10 17:26:07,125 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.Close - SelectProductTest  Finished
+2020-08-10 17:26:12,904 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.StartingLog - AddingProductToShoppingBagTest  Started
+2020-08-10 17:26:31,632 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.Close - AddingProductToShoppingBagTest  Finished
+2020-08-10 17:26:36,733 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.StartingLog - SelectingAddressTest  Started
+2020-08-10 17:26:38,586 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.Close - SelectingAddressTest  Finished
+2020-08-10 17:26:43,915 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.StartingLog - LogoutTest  Started
+2020-08-10 17:27:09,908 INFO [ParallelWorker#2] Myntra.MyntraBase.Base.Close - LogoutTest  Finished

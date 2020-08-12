@@ -4,15 +4,16 @@
 // </copyright>
 //-----------------------------------------------------------------------
 
+using Myntra.CustomException;
 using Myntra.MyntraBase;
 using Myntra.Pages;
 using Myntra.Utils;
 using NUnit.Framework;
-using System;
-using static Myntra.Utils.Utility;
+using static Myntra.CustomException.Exceptions;
 
 namespace Myntra.Test
 {
+
     /// <summary>
     /// Test cases
     /// </summary>
@@ -93,7 +94,11 @@ namespace Myntra.Test
         public void QuitBrowser()
         {
             driver.Quit();
-            //Utility.SendEmail();
+            if (Utility.IsConnectedToInternet().Equals(true))
+            {
+                Utility.SendEmail();
+            }
+            throw new Exceptions("Email not send due to no internet issue", ExceptionType.EMAIL_NOT_SEND_INTERNET_ISSUE);
         }
     }
 }

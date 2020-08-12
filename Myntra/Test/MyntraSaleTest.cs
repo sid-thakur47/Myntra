@@ -13,7 +13,7 @@ namespace Myntra.Test
         /// <summary>
         /// Login to myntra account 
         /// </summary>
-        [Test, Order(1)]
+       /* [Test, Order(1)]
         public void LoginTestSale()
         {
             log.Info("Starting login test");
@@ -87,6 +87,6 @@ namespace Myntra.Test
         {
             driver.Quit();
             log.Info("Browser closed");
-        }
+        }*/
     }
 }

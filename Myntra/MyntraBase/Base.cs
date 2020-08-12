@@ -12,12 +12,8 @@ using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Edge;
 using System;
 using System.Configuration;
-using System.Security;
-using System.Threading;
-using static Myntra.Utils.Utility;
 
 namespace Myntra.MyntraBase
 {
@@ -50,15 +46,16 @@ namespace Myntra.MyntraBase
         [SetUp]
         public void StartingLog()
         {
+            Console.WriteLine("Check Internet Connection:"+ Utility.IsConnectedToInternet());
             log.Info(TestContext.CurrentContext.Test.Name + " Started");
         }
 
         private void ChooseBrowser()
         {
-                ChromeOptions options = new ChromeOptions();
-                options.AddArguments("--disable-notifications", "--start-maximized");
-                driver = new ChromeDriver(options);
-                driver.Url = "https://www.myntra.com/login/password";
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--disable-notifications", "--start-maximized");
+            driver = new ChromeDriver(options);
+            driver.Url = "https://www.myntra.com/login/password";
         }
 
         /// <summary>
@@ -67,8 +64,6 @@ namespace Myntra.MyntraBase
         [TearDown]
         public void Close()
         {
-            try
-            {
                 test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
                 if (TestContext.CurrentContext.Result.Outcome.Status == TestStatus.Failed)
                 {
@@ -84,14 +79,7 @@ namespace Myntra.MyntraBase
                     test.Log(Status.Pass, "Test Sucessful");
                     test.Pass(MarkupHelper.CreateLabel(TestContext.CurrentContext.Test.Name, ExtentColor.Green));
                 }
-            }
-            catch (Exception e)
-            {
-                throw e;
-            }
-            Thread.Sleep(5000);
             extent.Flush();
         }
-
     }
 }

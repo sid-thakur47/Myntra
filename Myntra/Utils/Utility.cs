@@ -5,13 +5,12 @@
 //-----------------------------------------------------------------------
 
 using Myntra.CustomException;
-using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
 using System.Configuration;
 using System.Net;
 using System.Net.Mail;
-using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 
 namespace Myntra.Utils
 {
@@ -20,7 +19,6 @@ namespace Myntra.Utils
     /// </summary>
     public class Utility
     {
-        private string http;
 
         public enum Browser
         {
@@ -34,20 +32,26 @@ namespace Myntra.Utils
         /// <returns></returns>
         public static string TakeScreenshot(IWebDriver driver, string testStatus)
         {
-            ITakesScreenshot ts = (ITakesScreenshot)driver;
-            Screenshot screenshot = ts.GetScreenshot();
-            string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            string finalPath = path.Substring(0, path.LastIndexOf("bin")) + "Screenshots\\" + testStatus + ".png";
-            string localPath = new Uri(finalPath).LocalPath;
-            screenshot.SaveAsFile(localPath, ScreenshotImageFormat.Png);
-            return localPath;
+            try
+            {
+                ITakesScreenshot ts = (ITakesScreenshot)driver;
+                Screenshot screenshot = ts.GetScreenshot();
+                string path = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
+                string finalPath = path.Substring(0, path.LastIndexOf("bin")) + "Screenshots\\" + testStatus + ".png";
+                string localPath = new Uri(finalPath).LocalPath;
+                screenshot.SaveAsFile(localPath, ScreenshotImageFormat.Png);
+                return localPath;
+            }
+            catch (Exception)
+            {
+                throw new Exceptions("Screenshot error", Exceptions.ExceptionType.SCRRENSHOT_NOT_CAPTURED);
+            }
         }
-
-        /// <summary>
-        /// To send report 
-        /// </summary>
-        public static void SendEmail()
-        {
+            /// <summary>
+            /// To send report 
+            /// </summary>
+            public static void SendEmail()
+            {
             try
             {
                 MailMessage mail = new MailMessage();
@@ -69,6 +73,23 @@ namespace Myntra.Utils
             catch (Exception)
             {
                 throw new Exceptions("Email error", Exceptions.ExceptionType.EMAIL_NOT_SEND);
+            }
+        }
+
+
+        [DllImport("wininet.dll")]
+        private extern static bool InternetGetConnectedState(out int Description, int ReservedValue);
+        //Creating a function that uses the API function...  
+        public static bool IsConnectedToInternet()
+        {
+            try
+            {
+                int Desc;
+                return InternetGetConnectedState(out Desc, 0);
+            }
+            catch (Exception)
+            {
+                throw new Exceptions("Internet error", Exceptions.ExceptionType.NO_INTERNET);
             }
         }
     }
